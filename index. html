@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Focus Tree Timer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="top-header">
+
+        <div class="brand">
+            <div class="brand-icon">🌳</div>
+
+            <div>
+                <h1>Focus Tree</h1>
+                <span>Grow your focus.</span>
+            </div>
+        </div>
+
+        <div class="header-actions">
+
+            <div class="header-stat">
+                <span>🪙</span>
+                <strong id="coinCount">0</strong>
+            </div>
+
+            <div class="header-stat">
+                <span>🔥</span>
+                <strong id="streakCount">0</strong>
+            </div>
+
+            <button id="darkModeBtn" class="icon-btn" title="Dark Mode">
+                🌙
+            </button>
+
+            <button id="soundBtn" class="icon-btn" title="Sound">
+                🔊
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+        <!-- ================= TIMER SECTION ================= -->
+
+        <section class="timer-section">
+
+            <div class="section-heading">
+                <span class="section-label">FOCUS SESSION</span>
+
+                <h2>Grow a Tree While You Focus</h2>
+
+                <p>
+                    Stay focused until the timer reaches zero.
+                    Your tree grows continuously with your focus.
+                </p>
+            </div>
+
+
+            <div class="timer-card">
+
+                <div class="timer-circle">
+
+                    <svg viewBox="0 0 220 220">
+
+                        <circle
+                            class="timer-bg"
+                            cx="110"
+                            cy="110"
+                            r="96">
+                        </circle>
+
+                        <circle
+                            id="timerProgress"
+                            class="timer-progress"
+                            cx="110"
+                            cy="110"
+                            r="96">
+                        </circle>
+
+                    </svg>
+
+                    <div class="timer-content">
+
+                        <div id="timerDisplay">
+                            25:00
+                        </div>
+
+                        <span id="timerStatus">
+                            Ready
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRESETS -->
+
+                <div class="preset-title">
+                    Quick Time
+                </div>
+
+                <div class="time-presets">
+
+                    <button class="time-btn active" data-minutes="25">
+                        25 min
+                    </button>
+
+                    <button class="time-btn" data-minutes="45">
+                        45 min
+                    </button>
+
+                    <button class="time-btn" data-minutes="60">
+                        60 min
+                    </button>
+
+                    <button class="time-btn" data-minutes="90">
+                        90 min
+                    </button>
+
+                </div>
+
+
+                <!-- CUSTOM TIME -->
+
+                <div class="custom-time">
+
+                    <div class="preset-title">
+                        Custom Focus Time
+                    </div>
+
+                    <div class="custom-inputs">
+
+                        <div class="input-group">
+
+                            <label for="customHours">
+                                Hours
+                            </label>
+
+                            <input
+                                id="customHours"
+                                type="number"
+                                min="0"
+                                max="23"
+                                value="0">
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="customMinutes">
+                                Minutes
+                            </label>
+
+                            <input
+                                id="customMinutes"
+                                type="number"
+                                min="0"
+                                max="59"
+                                value="25">
+
+                        </div>
+
+
+                        <button
+                            id="setCustomTime"
+                            class="secondary-btn">
+                            Set Time
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="customTimeMessage"
+                        class="custom-message">
+                    </div>
+
+                </div>
+
+
+                <!-- CONTROLS -->
+
+                <div class="timer-controls">
+
+                    <button
+                        id="startBtn"
+                        class="primary-btn">
+                        ▶ Start Focus
+                    </button>
+
+                    <button
+                        id="pauseBtn"
+                        class="secondary-btn"
+                        disabled>
+                        ⏸ Pause
+                    </button>
+
+                    <button
+                        id="stopBtn"
+                        class="danger-btn"
+                        disabled>
+                        ■ Stop
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= GROWING TREE ================= -->
+
+        <section class="growth-section">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    YOUR FOCUS TREE
+                </span>
+
+                <h2>Watch It Grow 🌱</h2>
+
+                <p>
+                    Every second of focus helps your tree grow.
+                </p>
+
+            </div>
+
+
+            <div class="tree-card">
+
+                <div class="tree-world" id="treeWorld">
+
+                    <div class="sun">
+                        ☀️
+                    </div>
+
+                    <div class="cloud cloud-one">
+                        ☁️
+                    </div>
+
+                    <div class="cloud cloud-two">
+                        ☁️
+                    </div>
+
+
+                    <!-- TREE -->
+
+                    <div
+                        id="growingTree"
+                        class="growing-tree">
+
+                        <div class="tree-shadow"></div>
+
+                        <div class="tree-trunk">
+
+                            <div class="branch branch-left"></div>
+                            <div class="branch branch-right"></div>
+
+                            <div class="branch branch-left-small"></div>
+                            <div class="branch branch-right-small"></div>
+
+                        </div>
+
+
+                        <div class="tree-canopy">
+
+                            <div class="leaf leaf-1"></div>
+                            <div class="leaf leaf-2"></div>
+                            <div class="leaf leaf-3"></div>
+                            <div class="leaf leaf-4"></div>
+                            <div class="leaf leaf-5"></div>
+                            <div class="leaf leaf-6"></div>
+                            <div class="leaf leaf-7"></div>
+                            <div class="leaf leaf-8"></div>
+                            <div class="leaf leaf-9"></div>
+                            <div class="leaf leaf-10"></div>
+                            <div class="leaf leaf-11"></div>
+                            <div class="leaf leaf-12"></div>
+
+                        </div>
+
+
+                        <div class="flowers">
+
+                            <span class="flower flower-1">🌸</span>
+                            <span class="flower flower-2">🌸</span>
+                            <span class="flower flower-3">🌸</span>
+                            <span class="flower flower-4">🌸</span>
+
+                        </div>
+
+
+                        <div class="fruits">
+
+                            <span class="fruit fruit-1">🍎</span>
+                            <span class="fruit fruit-2">🍎</span>
+                            <span class="fruit fruit-3">🍎</span>
+                            <span class="fruit fruit-4">🍎</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FALLING LEAVES -->
+
+                    <div
+                        id="fallingLeaves"
+                        class="falling-leaves">
+                    </div>
+
+
+                    <!-- FALLEN LEAVES -->
+
+                    <div
+                        id="fallenLeaves"
+                        class="fallen-leaves">
+                    </div>
+
+
+                    <div class="ground"></div>
+
+                </div>
+
+
+                <div class="tree-info">
+
+                    <div
+                        id="growthStage"
+                        class="growth-stage">
+                        🌱 Seed
+                    </div>
+
+                    <p id="growthMessage">
+                        Your focus journey is ready to begin.
+                    </p>
+
+
+                    <div class="growth-progress">
+
+                        <div
+                            id="growthProgress"
+                            class="growth-progress-bar">
+                        </div>
+
+                    </div>
+
+
+                    <div class="growth-percent">
+                        <span>Growth</span>
+
+                        <strong id="growthPercent">
+                            0%
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= STATISTICS ================= -->
+
+        <section class="stats-section">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    YOUR PROGRESS
+                </span>
+
+                <h2>Focus Statistics</h2>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon">🌳</div>
+
+                    <strong id="treesCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Trees Grown
+                    </span>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon">⏱️</div>
+
+                    <strong id="minutesCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Focus Minutes
+                    </span>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+
+                    <strong id="sessionsCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Sessions
+                    </span>
+                </div>
+
+
+                <div class="stat-card danger-stat">
+                    <div class="stat-icon">🍂</div>
+
+                    <strong id="deadTreesCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Lost Trees
+                    </span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TREE SHOP ================= -->
+
+        <section class="shop-section">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    TREE SHOP
+                </span>
+
+                <h2>Choose Your Tree 🌲</h2>
+
+                <p>
+                    Complete focus sessions and earn coins
+                    to unlock beautiful trees.
+                </p>
+
+            </div>
+
+
+            <div
+                id="treeShop"
+                class="tree-shop">
+            </div>
+
+        </section>
+
+
+        <!-- ================= MY FOREST ================= -->
+
+        <section class="forest-section">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    MY FOREST
+                </span>
+
+                <h2>Your Focus Forest 🌳</h2>
+
+                <p>
+                    Every completed session becomes a tree.
+                </p>
+
+            </div>
+
+
+            <div
+                id="forestPreview"
+                class="forest-preview">
+            </div>
+
+
+            <button
+                id="openForestBtn"
+                class="primary-btn forest-button">
+                🌲 Enter Full Forest
+            </button>
+
+        </section>
+
+
+        <!-- ================= HISTORY ================= -->
+
+        <section class="history-section">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    FOCUS HISTORY
+                </span>
+
+                <h2>Recent Sessions</h2>
+
+            </div>
+
+
+            <div
+                id="historyList"
+                class="history-list">
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOREST MODAL ================= -->
+
+    <div
+        id="forestModal"
+        class="modal">
+
+        <div class="modal-content forest-modal-content">
+
+            <button
+                class="modal-close"
+                id="closeForestBtn">
+                ×
+            </button>
+
+            <div class="modal-heading">
+
+                <span class="section-label">
+                    YOUR FOREST
+                </span>
+
+                <h2>🌲 Focus Forest</h2>
+
+                <p>
+                    A forest built from your completed focus sessions.
+                </p>
+
+            </div>
+
+
+            <div
+                id="fullForest"
+                class="full-forest">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= CELEBRATION MODAL ================= -->
+
+    <div
+        id="celebrationModal"
+        class="modal">
+
+        <div class="modal-content celebration-content">
+
+            <div class="celebration-icon">
+                🌳✨
+            </div>
+
+            <h2>Focus Complete!</h2>
+
+            <p>
+                Your tree has fully grown.
+                You earned
+                <strong id="rewardCoins">0</strong>
+                coins!
+            </p>
+
+            <button
+                id="closeCelebrationBtn"
+                class="primary-btn">
+                Awesome! 🌟
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= DEATH MODAL ================= -->
+
+    <div
+        id="deathModal"
+        class="modal">
+
+        <div class="modal-content death-content">
+
+            <div class="death-icon">
+                🍂
+            </div>
+
+            <h2>Your Tree Couldn't Make It...</h2>
+
+            <p>
+                You stopped your focus session before
+                the tree could finish growing.
+            </p>
+
+            <p class="death-small">
+                Don't worry. Plant another seed and try again. 🌱
+            </p>
+
+            <button
+                id="closeDeathBtn"
+                class="primary-btn">
+                Plant Again 🌱
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            🌱 Focus Tree Timer
+        </p>
+
+        <span>
+            Grow your focus. Grow your forest.
+        </span>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
