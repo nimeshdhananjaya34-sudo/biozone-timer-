@@ -1,0 +1,2257 @@
+/* =========================================================
+   FOCUS TREE TIMER
+   COMPLETE CSS
+========================================================= */
+
+:root {
+
+    --bg: #f4f8f4;
+    --card: #ffffff;
+    --card-soft: #f8fbf8;
+
+    --text: #18251d;
+    --muted: #718078;
+
+    --green: #2e9d59;
+    --green-dark: #176b38;
+    --green-light: #dff5e6;
+
+    --danger: #d95454;
+    --danger-light: #ffe6e6;
+
+    --gold: #e5a92d;
+
+    --border: #e3ebe5;
+
+    --shadow:
+        0 20px 50px rgba(35, 70, 45, 0.10);
+
+    --radius: 24px;
+
+    --tree-growth: 0;
+}
+
+
+body.dark {
+
+    --bg: #0d1711;
+    --card: #152119;
+    --card-soft: #19281e;
+
+    --text: #edf8ef;
+    --muted: #99aa9e;
+
+    --green: #49bd70;
+    --green-dark: #8ae0a4;
+    --green-light: #1c3a27;
+
+    --danger: #f27676;
+    --danger-light: #422222;
+
+    --border: #2a3b2e;
+
+    --shadow:
+        0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(90, 180, 110, 0.08),
+            transparent 30%
+        ),
+        var(--bg);
+
+    color: var(--text);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.top-header {
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 16px 6%;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--card) 90%,
+            transparent
+        );
+
+    backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.brand {
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-icon {
+
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 15px;
+
+    background: var(--green-light);
+
+    font-size: 26px;
+}
+
+.brand h1 {
+
+    margin: 0;
+
+    font-size: 20px;
+}
+
+.brand span {
+
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 12px;
+
+    color: var(--muted);
+}
+
+.header-actions {
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-stat {
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 9px 13px;
+
+    background: var(--card-soft);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+}
+
+.icon-btn {
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    transition: 0.2s;
+}
+
+.icon-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.container {
+
+    width: min(1100px, 92%);
+
+    margin: auto;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+section {
+    padding: 65px 0;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.section-label {
+
+    display: inline-block;
+
+    color: var(--green);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+
+    margin:
+        8px 0 8px;
+
+    font-size:
+        clamp(26px, 5vw, 38px);
+}
+
+.section-heading p {
+
+    max-width: 600px;
+
+    margin:
+        0 auto;
+
+    color: var(--muted);
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   TIMER CARD
+========================================================= */
+
+.timer-card {
+
+    max-width: 720px;
+
+    margin: auto;
+
+    padding: 38px;
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius);
+
+    box-shadow:
+        var(--shadow);
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   TIMER CIRCLE
+========================================================= */
+
+.timer-circle {
+
+    width: 280px;
+    height: 280px;
+
+    position: relative;
+
+    margin:
+        0 auto 32px;
+}
+
+.timer-circle svg {
+
+    width: 100%;
+    height: 100%;
+
+    transform:
+        rotate(-90deg);
+}
+
+.timer-bg,
+.timer-progress {
+
+    fill: none;
+
+    stroke-width: 12;
+}
+
+.timer-bg {
+    stroke: var(--border);
+}
+
+.timer-progress {
+
+    stroke: var(--green);
+
+    stroke-linecap: round;
+
+    stroke-dasharray: 603;
+
+    stroke-dashoffset: 603;
+
+    transition:
+        stroke-dashoffset 0.2s linear;
+}
+
+.timer-content {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+#timerDisplay {
+
+    font-size:
+        clamp(42px, 9vw, 65px);
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+}
+
+#timerStatus {
+
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   PRESETS
+========================================================= */
+
+.preset-title {
+
+    margin-bottom: 12px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.time-presets {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 10px;
+
+    margin-bottom: 28px;
+}
+
+.time-btn {
+
+    padding: 12px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: var(--card-soft);
+
+    color: var(--text);
+
+    font-weight: 700;
+
+    transition: 0.2s;
+}
+
+.time-btn:hover {
+    transform: translateY(-2px);
+}
+
+.time-btn.active {
+
+    background: var(--green);
+
+    border-color: var(--green);
+
+    color: white;
+}
+
+
+/* =========================================================
+   CUSTOM TIME
+========================================================= */
+
+.custom-time {
+
+    padding:
+        20px;
+
+    margin-bottom:
+        25px;
+
+    background:
+        var(--card-soft);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        16px;
+}
+
+.custom-inputs {
+
+    display: flex;
+
+    align-items: end;
+
+    gap: 10px;
+}
+
+.input-group {
+
+    flex: 1;
+
+    text-align: left;
+}
+
+.input-group label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.input-group input {
+
+    width: 100%;
+
+    padding:
+        12px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        10px;
+
+    outline: none;
+
+    background:
+        var(--card);
+
+    color:
+        var(--text);
+}
+
+.input-group input:focus {
+    border-color: var(--green);
+}
+
+.custom-message {
+
+    min-height: 20px;
+
+    margin-top: 10px;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-btn,
+.secondary-btn,
+.danger-btn {
+
+    border: none;
+
+    border-radius: 13px;
+
+    padding:
+        13px 20px;
+
+    font-weight: 800;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.primary-btn {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--green-dark)
+        );
+
+    color: white;
+
+    box-shadow:
+        0 10px 25px
+        rgba(46, 157, 89, 0.22);
+}
+
+.secondary-btn {
+
+    background:
+        var(--green-light);
+
+    color:
+        var(--green-dark);
+
+    border:
+        1px solid var(--border);
+}
+
+.danger-btn {
+
+    background:
+        var(--danger-light);
+
+    color:
+        var(--danger);
+}
+
+.primary-btn:hover,
+.secondary-btn:hover,
+.danger-btn:hover {
+
+    transform:
+        translateY(-2px);
+}
+
+.timer-controls {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   TREE WORLD
+========================================================= */
+
+.tree-card {
+
+    overflow: hidden;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius);
+
+    box-shadow:
+        var(--shadow);
+}
+
+.tree-world {
+
+    position: relative;
+
+    height: 470px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #a9def7 0%,
+            #d9f3ff 62%,
+            #bce5aa 63%,
+            #80bf6d 100%
+        );
+}
+
+body.dark .tree-world {
+
+    background:
+        linear-gradient(
+            180deg,
+            #152d38 0%,
+            #274450 62%,
+            #203b24 63%,
+            #244c2c 100%
+        );
+}
+
+.sun {
+
+    position: absolute;
+
+    top: 35px;
+    right: 70px;
+
+    font-size: 55px;
+
+    opacity: 0.9;
+}
+
+.cloud {
+
+    position: absolute;
+
+    font-size: 65px;
+
+    opacity: 0.65;
+
+    animation:
+        cloudMove 16s linear infinite alternate;
+}
+
+.cloud-one {
+
+    top: 55px;
+    left: 8%;
+}
+
+.cloud-two {
+
+    top: 125px;
+    right: 18%;
+
+    animation-delay:
+        -6s;
+}
+
+@keyframes cloudMove {
+
+    from {
+        transform:
+            translateX(-10px);
+    }
+
+    to {
+        transform:
+            translateX(20px);
+    }
+}
+
+
+/* =========================================================
+   GROUND
+========================================================= */
+
+.ground {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 105px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #80bd68,
+            #57994f
+        );
+
+    border-radius:
+        50% 50% 0 0 /
+        20% 20% 0 0;
+}
+
+body.dark .ground {
+
+    background:
+        linear-gradient(
+            180deg,
+            #2e6535,
+            #1e4828
+        );
+}
+
+
+/* =========================================================
+   GROWING TREE
+========================================================= */
+
+.growing-tree {
+
+    --growth: 0;
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 72px;
+
+    width: 330px;
+    height: 350px;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 5;
+
+    transition:
+        filter 0.7s ease;
+}
+
+
+/* =========================================================
+   TREE SHADOW
+========================================================= */
+
+.tree-shadow {
+
+    position: absolute;
+
+    bottom: 0;
+    left: 50%;
+
+    width:
+        calc(
+            50px + (var(--growth) * 1.65px)
+        );
+
+    height:
+        calc(
+            10px + (var(--growth) * 0.20px)
+        );
+
+    transform:
+        translateX(-50%);
+
+    background:
+        rgba(20, 60, 25, 0.22);
+
+    border-radius:
+        50%;
+
+    transition:
+        width 0.3s linear,
+        height 0.3s linear;
+}
+
+
+/* =========================================================
+   TRUNK
+========================================================= */
+
+.tree-trunk {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 5px;
+
+    width:
+        calc(
+            7px + (var(--growth) * 0.27px)
+        );
+
+    height:
+        calc(
+            15px + (var(--growth) * 2.15px)
+        );
+
+    transform:
+        translateX(-50%);
+
+    transform-origin:
+        bottom center;
+
+    background:
+        linear-gradient(
+            90deg,
+            #56361e,
+            #8b5a2e,
+            #67411f
+        );
+
+    border-radius:
+        8px 8px 3px 3px;
+
+    box-shadow:
+        inset -3px 0 4px
+        rgba(0,0,0,0.2);
+
+    transition:
+        width 0.25s linear,
+        height 0.25s linear;
+}
+
+
+/* =========================================================
+   BRANCHES
+========================================================= */
+
+.branch {
+
+    position: absolute;
+
+    height:
+        calc(
+            2px + (var(--growth) * 0.055px)
+        );
+
+    background:
+        #67411f;
+
+    border-radius:
+        20px;
+
+    transform-origin:
+        left center;
+
+    opacity:
+        clamp(
+            0,
+            calc((var(--growth) - 8) / 20),
+            1
+        );
+
+    transition:
+        width 0.25s linear,
+        opacity 0.25s linear;
+}
+
+.branch-left {
+
+    width:
+        calc(
+            0px + (var(--growth) * 1.25px)
+        );
+
+    left: 0;
+
+    top: 31%;
+
+    transform:
+        rotate(-34deg);
+}
+
+.branch-right {
+
+    width:
+        calc(
+            0px + (var(--growth) * 1.2px)
+        );
+
+    right: -60%;
+
+    top: 43%;
+
+    transform:
+        rotate(-148deg);
+}
+
+.branch-left-small {
+
+    width:
+        calc(
+            0px + (var(--growth) * 0.72px)
+        );
+
+    left: -5%;
+
+    top: 48%;
+
+    transform:
+        rotate(-22deg);
+
+    opacity:
+        clamp(
+            0,
+            calc((var(--growth) - 28) / 25),
+            1
+        );
+}
+
+.branch-right-small {
+
+    width:
+        calc(
+            0px + (var(--growth) * 0.70px)
+        );
+
+    right: -55%;
+
+    top: 59%;
+
+    transform:
+        rotate(-158deg);
+
+    opacity:
+        clamp(
+            0,
+            calc((var(--growth) - 32) / 25),
+            1
+        );
+}
+
+
+/* =========================================================
+   CANOPY
+========================================================= */
+
+.tree-canopy {
+
+    position: absolute;
+
+    left: 50%;
+
+    top:
+        calc(
+            295px - (var(--growth) * 2.35px)
+        );
+
+    width:
+        calc(
+            var(--growth) * 4.05px
+        );
+
+    height:
+        calc(
+            var(--growth) * 1.95px
+        );
+
+    transform:
+        translateX(-50%);
+
+    transition:
+        width 0.25s linear,
+        height 0.25s linear,
+        top 0.25s linear;
+}
+
+
+/* =========================================================
+   LEAVES
+========================================================= */
+
+.leaf {
+
+    position: absolute;
+
+    width:
+        calc(
+            5px + (var(--growth) * 0.33px)
+        );
+
+    height:
+        calc(
+            5px + (var(--growth) * 0.28px)
+        );
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #91db7e,
+            #29914b 60%,
+            #176c38
+        );
+
+    border-radius:
+        55% 5% 55% 5%;
+
+    opacity:
+        clamp(
+            0,
+            calc((var(--growth) - 20) / 25),
+            1
+        );
+
+    transform:
+        rotate(45deg);
+
+    transition:
+        width 0.25s linear,
+        height 0.25s linear,
+        opacity 0.25s linear;
+}
+
+.leaf-1 {
+    left: 48%;
+    top: 35%;
+}
+
+.leaf-2 {
+    left: 20%;
+    top: 42%;
+}
+
+.leaf-3 {
+    right: 18%;
+    top: 42%;
+}
+
+.leaf-4 {
+    left: 7%;
+    top: 60%;
+}
+
+.leaf-5 {
+    right: 5%;
+    top: 60%;
+}
+
+.leaf-6 {
+    left: 35%;
+    top: 8%;
+}
+
+.leaf-7 {
+    right: 35%;
+    top: 8%;
+}
+
+.leaf-8 {
+    left: 52%;
+    top: 65%;
+}
+
+.leaf-9 {
+    left: 30%;
+    top: 68%;
+}
+
+.leaf-10 {
+    right: 30%;
+    top: 68%;
+}
+
+.leaf-11 {
+    left: 5%;
+    top: 25%;
+}
+
+.leaf-12 {
+    right: 5%;
+    top: 25%;
+}
+
+
+/* =========================================================
+   FLOWERS
+========================================================= */
+
+.flowers {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+}
+
+.flower {
+
+    position: absolute;
+
+    font-size:
+        calc(
+            2px + (var(--growth) * 0.15px)
+        );
+
+    opacity:
+        clamp(
+            0,
+            calc((var(--growth) - 55) / 20),
+            1
+        );
+
+    transition:
+        font-size 0.25s linear,
+        opacity 0.25s linear;
+}
+
+.flower-1 {
+    top: 22%;
+    left: 25%;
+}
+
+.flower-2 {
+    top: 32%;
+    right: 20%;
+}
+
+.flower-3 {
+    top: 58%;
+    left: 14%;
+}
+
+.flower-4 {
+    top: 58%;
+    right: 12%;
+}
+
+
+/* =========================================================
+   FRUITS
+========================================================= */
+
+.fruits {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+}
+
+.fruit {
+
+    position: absolute;
+
+    font-size:
+        calc(
+            1px + (var(--growth) * 0.17px)
+        );
+
+    opacity:
+        clamp(
+            0,
+            calc((var(--growth) - 78) / 18),
+            1
+        );
+
+    transition:
+        font-size 0.25s linear,
+        opacity 0.25s linear;
+}
+
+.fruit-1 {
+    top: 30%;
+    left: 33%;
+}
+
+.fruit-2 {
+    top: 40%;
+    right: 30%;
+}
+
+.fruit-3 {
+    top: 57%;
+    left: 25%;
+}
+
+.fruit-4 {
+    top: 58%;
+    right: 23%;
+}
+
+
+/* =========================================================
+   TREE INFO
+========================================================= */
+
+.tree-info {
+
+    padding:
+        25px 30px 30px;
+
+    text-align: center;
+}
+
+.growth-stage {
+
+    display: inline-block;
+
+    padding:
+        8px 14px;
+
+    background:
+        var(--green-light);
+
+    color:
+        var(--green-dark);
+
+    border-radius:
+        30px;
+
+    font-weight:
+        800;
+
+    font-size:
+        13px;
+}
+
+.tree-info p {
+
+    color:
+        var(--muted);
+
+    margin:
+        13px 0 18px;
+}
+
+.growth-progress {
+
+    height: 9px;
+
+    overflow: hidden;
+
+    background:
+        var(--border);
+
+    border-radius:
+        20px;
+}
+
+.growth-progress-bar {
+
+    width: 0%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #54c978,
+            #228a4a
+        );
+
+    border-radius:
+        inherit;
+
+    transition:
+        width 0.15s linear;
+}
+
+.growth-percent {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top:
+        8px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+}
+
+
+/* =========================================================
+   TREE DEATH
+========================================================= */
+
+.growing-tree.stage-dead {
+
+    filter:
+        saturate(0.15)
+        brightness(0.65);
+
+    animation:
+        treeDecay 2.8s ease forwards;
+}
+
+.growing-tree.stage-dead .leaf {
+
+    background:
+        #806a42 !important;
+
+    opacity:
+        0.25 !important;
+}
+
+.growing-tree.stage-dead .flower,
+.growing-tree.stage-dead .fruit {
+
+    opacity:
+        0.05 !important;
+}
+
+.growing-tree.stage-dead .tree-trunk {
+
+    background:
+        linear-gradient(
+            90deg,
+            #30271d,
+            #554635,
+            #33291e
+        );
+}
+
+@keyframes treeDecay {
+
+    0% {
+        filter:
+            saturate(1)
+            brightness(1);
+    }
+
+    45% {
+        filter:
+            saturate(0.55)
+            brightness(0.82);
+    }
+
+    100% {
+        filter:
+            saturate(0.05)
+            brightness(0.58);
+    }
+}
+
+
+/* =========================================================
+   FALLING LEAVES
+========================================================= */
+
+.falling-leaves {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 20;
+
+    pointer-events: none;
+}
+
+.falling-leaf {
+
+    position: absolute;
+
+    font-size:
+        18px;
+
+    animation:
+        leafFall 3s ease-in forwards;
+
+    opacity:
+        0;
+}
+
+@keyframes leafFall {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(0, 0)
+            rotate(0deg)
+            scale(0.7);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.7;
+
+        transform:
+            translate(
+                calc(-50px + 100px * var(--random-x)),
+                270px
+            )
+            rotate(500deg)
+            scale(0.8);
+    }
+}
+
+.fallen-leaves {
+
+    position: absolute;
+
+    z-index: 8;
+
+    left: 50%;
+
+    bottom: 60px;
+
+    transform:
+        translateX(-50%);
+
+    width: 330px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    font-size: 20px;
+
+    transition:
+        opacity 0.8s ease;
+}
+
+.fallen-leaves.show {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+.stat-card {
+
+    padding:
+        24px 15px;
+
+    text-align:
+        center;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        18px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(30,70,40,0.05);
+}
+
+.stat-icon {
+
+    font-size:
+        28px;
+
+    margin-bottom:
+        8px;
+}
+
+.stat-card strong {
+
+    display:
+        block;
+
+    font-size:
+        28px;
+}
+
+.stat-card span {
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+}
+
+.danger-stat strong {
+    color:
+        var(--danger);
+}
+
+
+/* =========================================================
+   SHOP
+========================================================= */
+
+.tree-shop {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        15px;
+}
+
+.tree-item {
+
+    padding:
+        20px;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        18px;
+
+    text-align:
+        center;
+
+    transition:
+        0.2s;
+}
+
+.tree-item:hover {
+    transform:
+        translateY(-4px);
+}
+
+.tree-item.selected {
+
+    border:
+        2px solid var(--green);
+
+    box-shadow:
+        0 10px 25px
+        rgba(46,157,89,0.12);
+}
+
+.tree-item-icon {
+
+    font-size:
+        48px;
+
+    margin-bottom:
+        8px;
+}
+
+.tree-item h3 {
+
+    margin:
+        5px 0;
+
+    font-size:
+        15px;
+}
+
+.tree-item p {
+
+    min-height:
+        38px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        11px;
+
+    line-height:
+        1.5;
+}
+
+.tree-price {
+
+    color:
+        var(--gold);
+
+    font-weight:
+        800;
+
+    margin:
+        10px 0;
+}
+
+.tree-action {
+
+    width:
+        100%;
+
+    padding:
+        9px;
+
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    background:
+        var(--green-light);
+
+    color:
+        var(--green-dark);
+
+    font-weight:
+        800;
+}
+
+
+/* =========================================================
+   FOREST PREVIEW
+========================================================= */
+
+.forest-preview {
+
+    min-height:
+        210px;
+
+    padding:
+        20px;
+
+    display:
+        flex;
+
+    align-items:
+        end;
+
+    justify-content:
+        center;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        12px;
+
+    overflow:
+        hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #b8e9fa 0%,
+            #d9f6ff 60%,
+            #77b768 61%,
+            #4c9348 100%
+        );
+
+    border-radius:
+        22px;
+
+    border:
+        1px solid var(--border);
+}
+
+.forest-tree {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width:
+        65px;
+
+    height:
+        120px;
+
+    font-size:
+        48px;
+
+    animation:
+        treeAppear 0.5s ease;
+}
+
+@keyframes treeAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(20px)
+            scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.empty-forest {
+
+    width:
+        100%;
+
+    text-align:
+        center;
+
+    color:
+        rgba(20,70,30,0.65);
+}
+
+.forest-button {
+
+    display:
+        block;
+
+    margin:
+        20px auto 0;
+}
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+.history-list {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        10px;
+}
+
+.history-item {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    padding:
+        15px 18px;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        14px;
+}
+
+.history-left {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+}
+
+.history-icon {
+
+    width:
+        40px;
+
+    height:
+        40px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    border-radius:
+        11px;
+
+    background:
+        var(--green-light);
+}
+
+.history-item small {
+
+    display:
+        block;
+
+    color:
+        var(--muted);
+
+    margin-top:
+        3px;
+}
+
+.history-result {
+
+    font-weight:
+        800;
+}
+
+.history-complete {
+    color:
+        var(--green);
+}
+
+.history-lost {
+    color:
+        var(--danger);
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+.modal {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        1000;
+
+    display:
+        none;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        20px;
+
+    background:
+        rgba(0,0,0,0.65);
+
+    backdrop-filter:
+        blur(8px);
+}
+
+.modal.show {
+    display:
+        flex;
+}
+
+.modal-content {
+
+    position:
+        relative;
+
+    width:
+        min(600px, 100%);
+
+    max-height:
+        90vh;
+
+    overflow:
+        auto;
+
+    padding:
+        35px;
+
+    background:
+        var(--card);
+
+    color:
+        var(--text);
+
+    border-radius:
+        25px;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.3);
+
+    text-align:
+        center;
+
+    animation:
+        modalIn 0.3s ease;
+}
+
+@keyframes modalIn {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(20px)
+            scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.modal-close {
+
+    position:
+        absolute;
+
+    top:
+        15px;
+
+    right:
+        15px;
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--card-soft);
+
+    color:
+        var(--text);
+
+    font-size:
+        24px;
+}
+
+.celebration-icon,
+.death-icon {
+
+    font-size:
+        70px;
+
+    margin-bottom:
+        10px;
+}
+
+.celebration-content h2,
+.death-content h2 {
+
+    margin:
+        5px 0 10px;
+}
+
+.celebration-content p,
+.death-content p {
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.7;
+}
+
+.death-small {
+    font-size:
+        13px;
+}
+
+
+/* =========================================================
+   FULL FOREST
+========================================================= */
+
+.full-forest {
+
+    min-height:
+        430px;
+
+    padding:
+        30px;
+
+    display:
+        flex;
+
+    align-items:
+        end;
+
+    justify-content:
+        center;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        10px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #91d9f0 0%,
+            #d5f2fa 52%,
+            #6cae62 53%,
+            #397b42 100%
+        );
+
+    border-radius:
+        20px;
+
+    overflow:
+        hidden;
+}
+
+.full-forest .forest-tree {
+
+    width:
+        85px;
+
+    height:
+        170px;
+
+    font-size:
+        65px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    padding:
+        35px 20px;
+
+    text-align:
+        center;
+
+    border-top:
+        1px solid var(--border);
+
+    color:
+        var(--muted);
+}
+
+footer p {
+
+    margin:
+        0 0 5px;
+
+    font-weight:
+        800;
+
+    color:
+        var(--text);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .tree-shop {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .top-header {
+        padding:
+            12px 4%;
+    }
+
+    .brand h1 {
+        font-size:
+            17px;
+    }
+
+    .header-stat {
+        padding:
+            8px 9px;
+    }
+
+    .icon-btn {
+        width:
+            38px;
+
+        height:
+            38px;
+    }
+
+    section {
+        padding:
+            45px 0;
+    }
+
+    .timer-card {
+        padding:
+            25px 17px;
+    }
+
+    .timer-circle {
+        width:
+            235px;
+
+        height:
+            235px;
+    }
+
+    .time-presets {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .custom-inputs {
+        flex-wrap:
+            wrap;
+    }
+
+    .input-group {
+        min-width:
+            40%;
+    }
+
+    .custom-inputs button {
+        width:
+            100%;
+    }
+
+    .tree-world {
+        height:
+            400px;
+    }
+
+    .growing-tree {
+        transform:
+            translateX(-50%)
+            scale(0.83);
+
+        transform-origin:
+            bottom center;
+    }
+
+    .stats-grid,
+    .tree-shop {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .history-item {
+        align-items:
+            flex-start;
+    }
+
+    .modal-content {
+        padding:
+            28px 20px;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    .header-actions {
+        gap:
+            5px;
+    }
+
+    .header-stat {
+        display:
+            none;
+    }
+
+    .tree-shop,
+    .stats-grid {
+        grid-template-columns:
+            1fr;
+    }
+}
